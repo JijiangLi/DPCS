@@ -205,7 +205,7 @@ for data_name in config["sets_up"]:
         print("Scene has been established!!! Initialization rendered result is shown in matplotlib")
 
         #%% optimizer
-        opt = mi.ad.Adam(train_config["lr"],mask_updates=True)
+        opt = mi.ad.Adam(train_config["lr"])
         opt[key] = params_uncom[key]
         opt[key1] = params_uncom[key1]
         opt[key2] = mi.Vector3f(2.1476354598999023, 2.0160303115844727, 2.069981336593628)
