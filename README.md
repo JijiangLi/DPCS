@@ -40,7 +40,7 @@ to help you get started quickly.
 3. Run the docker image with the dataset and code mounted.
 ```bash
       git clone git clone https://github.com/JijiangLi/DPCS
-      cp -r `"path/DPCS_dataset"` .
+      cp -r `"path/DPCS_dataset"` ./DPCS
       docker run -it --gpus all --workdir /home -v "./DPCS":/home dpcs:latest
 ```
 4. Run the DPCS code to reproduce the relight results shows in the table 2 and Figure 5 of the main paper.
