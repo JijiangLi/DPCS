@@ -30,7 +30,7 @@ Also see the guidance for docker usage [below](#simple-way-to-get-started).
 
 ### Simple way to get started
 If you feel hard to get started from compiling of [mitsuba3](https://mitsuba.readthedocs.io/en/stable/src/developer_guide/compiling.html) and [CUDA denoising methods](https://github.com/CGLab-GIST/target-aware-denoising), we have offered a [docker image](https://hub.docker.com/repository/docker/jijiangli/dpcs/)
-to help you get start quickly.
+to help you get started quickly.
 
 1. Download the [DPCS dataset](https://drive.google.com/file/d/10BITDSg3g0y9ajSKn5zqb_1OmO1Xoab5/view?usp=drive_link) and extract it to a folder e.g. `r"path/DPCS_dataset"`.
 2. Pull the docker image.
@@ -43,7 +43,7 @@ to help you get start quickly.
       cp -r `"path/DPCS_dataset"` .
       docker run -it --gpus all --workdir /home -v "./DPCS":/home dpcs:latest
 ```
-4. Run the DPCS code to reproduce the relight results shows in the table 2. and fig 5. of the main paper.
+4. Run the DPCS code to reproduce the relight results shows in the table 2 and Figure 5 of the main paper.
 ```bash
     cd DPCS/mitsuba
     python3 run_DPCS.py --dataset_root "DPCS/DPCS_dataset"
