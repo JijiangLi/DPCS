@@ -1,0 +1,236 @@
+<scene version="3.0.0">
+    <default name="spp" value="16" />
+    <default name="res" value="512" />
+    <default name="max_depth" value="36" />
+    <default name="integrator" value="prb_reparam" />
+    <default name="scale" value="1" />
+    <default name="max_radiance" value="5" />
+
+    <integrator type="$integrator">
+        <integer name="max_depth" value="$max_depth" />
+        <float name="max_radiance" value="$max_radiance" />
+    </integrator>
+
+    <sensor type="perspective" id="sensor">
+
+        <float name="near_clip" value="0.001" />
+        <float name="far_clip" value="100.0" />
+
+
+
+        <float name="fov" value="32.01849887085633" />
+
+        <float name="principal_point_offset_x" value="-0.07680974155664444" />
+        <float name="principal_point_offset_y" value="-0.061926186084747314" />
+
+        <transform name="to_world">
+            			<matrix value="-1 0 0 0 0 -1 0 0 0 0 1 0 0 0 0 1" />
+        </transform>
+        <sampler type="multijitter">
+            <integer name="sample_count" value="512" />
+            <boolean name="jitter" value="true" />
+        </sampler>
+        <film type="hdrfilm">
+            <integer name="width" value="640" />
+            <integer name="height" value="360" />
+            <string name="pixel_format" value="rgb" />
+            <string name="component_format" value="float32" />
+            <boolean name="sample_border" value="true" />
+
+        </film>
+    </sensor>
+
+
+        <emitter type="projector">
+
+            <float name="scale" value="$scale" />
+
+            <float name="fov" value="19.023057021445798" />
+            <float name="principal_point_offset_x" value="-0.10989507287740707" />
+            <float name="principal_point_offset_y" value="-0.512288510799408" />
+
+
+            <texture type="bitmap" name="irradiance">
+                <string name="filename" value="texture/white_image.png" />
+                <boolean name="raw" value="True" />
+
+            </texture>
+            <transform name="to_world">
+                <lookat origin="0, 0, 0" target="0, 0,  1" up="0,  -1,  0" />
+            </transform>
+
+
+        </emitter>
+
+
+
+
+
+
+
+
+    <bsdf type="diffuse" id="white">
+        <texture name="reflectance" type="bitmap">
+            <string name="filename" value="./texture/white_image.png" />
+            <boolean name="raw" value="True" />
+        </texture>
+    </bsdf>
+
+
+    <bsdf type="normalmap" id="normal">
+    <texture name="normalmap" type="bitmap">
+
+        <boolean name="raw" value="true" />
+        <string name="filename" value="./texture/normal.png" />
+    </texture>
+
+
+
+
+
+        <bsdf type="principled">
+
+        <texture name="base_color" type="bitmap">
+
+             <string name="filename" value="./texture/white_image.png" />
+            <boolean name="raw" value="False" />
+        </texture>
+
+
+        <texture name="roughness" type="bitmap">
+
+             <string name="filename" value="./texture/black_image_1.png" />
+            <boolean name="raw" value="True" />
+        </texture>
+
+
+
+
+
+
+
+
+
+
+
+
+        <texture name="metallic" type="bitmap">
+
+             <string name="filename" value="./texture/black_image_1.png" />
+            <boolean name="raw" value="True" />
+        </texture>
+
+
+
+
+
+
+
+
+
+</bsdf>
+
+
+</bsdf>
+
+
+
+
+
+
+<bsdf type="principled" id="pbr">
+
+        <texture name="base_color" type="bitmap">
+
+             <string name="filename" value="./texture/white_image.png" />
+            <boolean name="raw" value="False" />
+        </texture>
+        <texture name="roughness" type="bitmap">
+
+             <string name="filename" value="./texture/black_image.png" />
+            <boolean name="raw" value="True" />
+        </texture>
+
+
+
+
+
+
+
+
+
+        <texture name="metallic" type="bitmap">
+
+             <string name="filename" value="./texture/black_image.png" />
+            <boolean name="raw" value="True" />
+        </texture>
+
+
+
+
+
+
+
+
+
+</bsdf>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <bsdf type="roughconductor" id="AL">
+        <string name="material" value="Au" />
+        <string name="distribution" value="ggx" />
+        <float name="alpha_u" value="0.2" />
+        <float name="alpha_v" value="0.3" />
+        <boolean name="sample_visible" value="False" />
+    </bsdf>
+
+
+    <shape type="obj">
+        <string name="filename" value="D:/DPCS_dataset\sets_up/occ_cloth\params\occ_cloth.obj" />
+        <ref id="normal" />
+        <boolean name="face_normals" value="False" />
+    </shape>
+
+  <bsdf type="normalmap" id="normal_2">
+    <texture name="normalmap" type="bitmap">
+
+        <boolean name="raw" value="true" />
+        <string name="filename" value="./texture/normal.png" />
+    </texture>
+
+          <bsdf type="diffuse">
+        <texture name="reflectance" type="bitmap">
+            <string name="filename" value="./texture/white_image.png" />
+            <boolean name="raw" value="True" />
+        </texture>
+    </bsdf>
+</bsdf>
+
+
+
+</scene>

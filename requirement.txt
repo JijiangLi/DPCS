@@ -1,0 +1,8 @@
+matplotlib
+opencv-contrib-python-headless==4.8.0.76
+color-science
+visdom>=0.1.8.3
+scikit-image>=0.16.2
+torch>=1.2.0
+torchvision>=0.2.1
+lpips==0.1.4
