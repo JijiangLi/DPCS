@@ -39,7 +39,7 @@ to help you get started quickly.
 ```
 3. Run the docker image with the dataset and code mounted.
 ```bash
-      git clone git clone https://github.com/JijiangLi/DPCS
+      git clone https://github.com/JijiangLi/DPCS
       cp -r "path/DPCS_dataset" ./DPCS
       docker run -it --gpus all --workdir /home -v "./DPCS":/home dpcs:latest
 ```
