@@ -33,11 +33,11 @@ If you feel hard to get started from compiling of [mitsuba3](https://mitsuba.rea
 to help you get start quickly.
 
 1. Download the [DPCS dataset](https://drive.google.com/file/d/10BITDSg3g0y9ajSKn5zqb_1OmO1Xoab5/view?usp=drive_link) and extract it to a folder e.g. `r"path/DPCS_dataset"`.
-2. Pull the docker image
+2. Pull the docker image.
 ```bash
      docker pull jijiangli/dpcs:latest
 ```
-3. Run the docker image with the dataset and code mounted
+3. Run the docker image with the dataset and code mounted.
 ```bash
       git clone git clone https://github.com/JijiangLi/DPCS
       cp -r `"path/DPCS_dataset"` .
@@ -58,7 +58,7 @@ to help you get start quickly.
    
 
 
-2. Install required packages by typing
+2. Install required packages by typing.
 ```bash
    pip install -r requirements.txt
    cd ..
@@ -92,25 +92,25 @@ to help you get start quickly.
 
 3. Download [DPCS dataset](https://drive.google.com/file/d/10BITDSg3g0y9ajSKn5zqb_1OmO1Xoab5/view?usp=drive_link) and extract it to a folder e.g. `r"path/DPCS_dataset"`.
 
-4. Enter to the root of `DPCS/mitsuba`, and run DPCS to reproduce the relight results shows in the table 2. and fig 5. of the main paper. 
+4. Enter to the root of `DPCS/mitsuba`, and run DPCS to reproduce the relight results shown in the table 2 and Figure 5 of the main paper. 
 ```bash
     cd DPCS
     cd mitsuba
     python3 run_DPCS.py --dataset_root `r"path/DPCS_dataset"`
 ```
 ### Evaluation of all baseline methods and DPCS
-For evaluation, we also offer code for the result after run `run_DPCS.py`, the code is in `DPCS_dataset/main.py`. 
-After you run this code you can get the results of the relighting in the `DPCS_dataset/metrics.excel` for all `data_name` of different methods inferred result in `DPCS_dataset/sets_up/`.
-Note that this script work simply to calculate the metrics for all method inferred images appears in `DPCS_dataset/sets_up/data_name/pred/relit/test`.
+For evaluation, we also offer code for the result after running `run_DPCS.py`, the code is in `DPCS_dataset/main.py`. 
+After you run this code, you can get the results of the relighting in the `DPCS_dataset/metrics.excel` for all `data_name` of different methods inferred result in `DPCS_dataset/sets_up/`.
+Note that this script works simply to calculate the metrics for all methods inferred images appear in `DPCS_dataset/sets_up/data_name/pred/relit/test`.
 ## Apply DPCS to your own setup
 
 1. Calibrate the projector-camera system using the calibration software in [A Fast and Flexible Projector-Camera Calibration System](https://github.com/BingyaoHuang/single-shot-pro-cam-calib).
 2. Capture a setup using the same software as 1.
-3. Reconstruct a surface point cloud in the same sotware as 1., the pcd file will in `'data_name/recon'`
-4. Reconstruct of the mesh with a initial ``base_color.png`` from point cloud in code,
-   note that this code take the input of the pcd and output a `mesh` with it's texture as `initial base color` directly
-   from pcd. This code may have some issue with UV for `.obj` file because some version of blender may not support for UV in
-   python package. To solve this, in blender GUI, you can export manually the mesh to `.obj` with UV map, and then rerun the following code,
+3. Reconstruct a surface point cloud in the same software as 1., the pcd file will be in `'data_name/recon'`.
+4. Reconstruction of the mesh with an initial ``base_color.png`` from point cloud in code,
+   note that this code takes the input of the pcd and outputs a `mesh` with its texture as `initial base color` directly
+   from pcd. This code may have some issues with UV for the `.obj` file because some version of Blender may not support UV in
+   Python package. To solve this, in Blender GUI, you can export manually the mesh to `.obj` with UV map, and then rerun the following code,
    it will work.
 ```bash
   cd DPCS
@@ -121,7 +121,7 @@ Note that this script work simply to calculate the metrics for all method inferr
 ```
 5. Add your new set_up to the dataset config in `DPCS_dataset/sets_up/config.json` and may delete all dataset config in `DPCS_dataset`, 
    this can save time to only run with your own setup rather than all datasets in `DPCS_dataset`.
-6. `[Optional]` If you want to use the compensation, you can set the `requried_compensation` to `Ture` in the `train_config` of the `run_DPCS.py` file. 
+6. `[Optional]` If you want to use the compensation, you can set the `required_compensation` to `True` in the `train_config` of the `run_DPCS.py` file. 
 7. Run the DPCS to your own setup. Do not forget to change the `config.json` to your own setup.
 ```bash
     cd DPCS/mitsuba
@@ -130,17 +130,17 @@ Note that this script work simply to calculate the metrics for all method inferr
 ----
 ## Common issue and Tips
 1. The directory structure of the data is consistent with those used in [CompenNeSt++](https://github.com/BingyaoHuang/CompenNeSt-plusplus) and [DeProCams](https://github.com/BingyaoHuang/DeProCams), which facilitates the reproduction of the baseline methods presented in the paper on the `DPCS_dataset`.
-2. After run the code, you can find the relighting results in `DPCS_dataset/sets_up/data_name/pred/relit/test` folder.
+2. After running the code, you can find the relighting results in `DPCS_dataset/sets_up/data_name/pred/relit/test` folder.
 3. If you run with config of `Compensation`, you can find the compensation results in `DPCS_dataset/sets_up/data_name/prj/cmp/test` folder.
 4. For the different dataset appear in `DPCS_dataset`, you can find the detail config in `DPCS_dataset/sets_up/config.json`.
-   E.g., whether use mask during training or what of the num_test patterns you use.
-5. Initial the BRDF, for `metallic` and `roughness`, init them to black,
+   E.g., whether to use a mask during training or what of the number of test patterns you use.
+5. Initialize the BRDF, for `metallic` and `roughness`, initialize them to black,
    for the `normal`, init it as the `(0,0,1)` no change to the surface. 
-   For `base color`, init it from point cloud or you can use white texture as initialization also.
-   but init from pcd sometimes perform little bit better. See more in `DPCS/render_utils/bake_texture.py`.
-6. To test novel scene, for example, you want to modify the scene material or geometry,
+   For `base color`, initialize it from the point cloud, or you can use a  white texture as initialization also.
+   but init from pcd sometimes performs a little bit better. See more in `DPCS/render_utils/bake_texture.py`.
+6. To test a  novel scene, for example, you want to modify the scene material or geometry,
    go to `DPCS/mitsuba/scene/simu.xml` to change the configuration, e.g., change geometry file or BRDF maps path.
-   then you can run the `run_DPCS.py` in `relit_DPCS` function to test.
+   Then you can run the `run_DPCS.py` in the `relit_DPCS` function to test.
 ----
 
 
@@ -157,8 +157,8 @@ Note that this script work simply to calculate the metrics for all method inferr
 - The denoising algorithms are borrowed from this excellent work [CGLab-GIST/target-aware-denoising](https://github.com/CGLab-GIST/target-aware-denoising).
 - The compensation is inspired by [Projector Compensation Framework using Differentiable Rendering](https://github.com/CGLab-GIST/pc-using-dr).
 - The dataloader and file structure are adopted from [CompenNeSt++](https://github.com/BingyaoHuang/CompenNeSt-plusplus) and [DeProCams](https://github.com/BingyaoHuang/DeProCams).
-- The calibration software is used by this work [A Fast and Flexible Projector-Camera Calibration System](https://github.com/BingyaoHuang/single-shot-pro-cam-calib).
+- The calibration software used in this work is [A Fast and Flexible Projector-Camera Calibration System](https://github.com/BingyaoHuang/single-shot-pro-cam-calib).
 - We thank the anonymous reviewers for valuable and inspiring comments and suggestions.
 
 ## Troubleshooting / Requests
-If you have any questions, please feel free to open a github issue or send an e-mail to [jijiangli@email.swu.edu.cn](jijiangli@email.swu.edu.cn).
+If you have any questions, please feel free to open a GitHub issue or send an e-mail to [jijiangli@email.swu.edu.cn](jijiangli@email.swu.edu.cn).
