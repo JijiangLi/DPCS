@@ -12,7 +12,6 @@ Also see the guidance for docker usage [below](#simple-way-to-get-started).
 * PyTorch compatible GPU
 * Python 3
 * PyTorch
-* opencv-python 
 * visdom
 * matplotlib
 * opencv-contrib-python-headless==4.8.0.76
