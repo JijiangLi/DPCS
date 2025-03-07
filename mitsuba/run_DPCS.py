@@ -32,8 +32,7 @@ from custom_ops.simple_regression import Regression
 @dr.wrap_ad(source='drjit', target='torch')
 def dr_deltaE_loss(x,y):
     return deltaE(x.permute(2,0,1).unsqueeze(0),y.permute(2,0,1).unsqueeze(0))
-# done : warping net setup and configuration
-# begin
+
 if torch.cuda.is_available():
     device = torch.device("cuda")
 else:
