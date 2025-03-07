@@ -1,17 +1,17 @@
 
 # DPCS: Path Tracing-Based Differentiable Projector-Camera Systems
 
+<p align="center">
+  <a href="https://jijiangli.github.io/DPCS/">Project Page</a >
+  |
+  <a href="https://drive.google.com/file/d/10BITDSg3g0y9ajSKn5zqb_1OmO1Xoab5/view?usp=drive_link">Data</a >
+</p >
 
 ## Introduction
 Implementation of DPCS: Path Tracing-Based Differentiable Projector-Camera Systems.
 We recommend running this code through [Nvidia-docker](https://hub.docker.com/repository/docker/jijiangli/dpcs/) on Ubuntu. 
 Please refer to the detailed introduction for the installation of [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html). You can find the guidance for docker usage for DPCS [below](#simple-way-to-get-started).
 
-<p align="center">
-  <a href="https://jijiangli.github.io/DPCS/">Project Page</a >
-  |
-  <a href="https://drive.google.com/file/d/10BITDSg3g0y9ajSKn5zqb_1OmO1Xoab5/view?usp=drive_link">Data</a >
-</p >
 
 ## Prerequisites
 * PyTorch compatible GPU
