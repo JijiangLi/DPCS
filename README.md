@@ -5,8 +5,13 @@
 ## Introduction
 Implementation of DPCS: Path Tracing-Based Differentiable Projector-Camera Systems.
 We recommend running this code through [Nvidia-docker](https://hub.docker.com/repository/docker/jijiangli/dpcs/) on Ubuntu. 
-Please refer to the detailed instruction for the installation of [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html).
-Also see the guidance for docker usage [below](#simple-way-to-get-started).
+Please refer to the detailed introduction for the installation of [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html). You can find the guidance for docker usage for DPCS [below](#simple-way-to-get-started).
+
+<p align="center">
+  <a href="https://jijiangli.github.io/DPCS/">Project Page</a >
+  |
+  <a href="https://drive.google.com/file/d/10BITDSg3g0y9ajSKn5zqb_1OmO1Xoab5/view?usp=drive_link">Data</a >
+</p >
 
 ## Prerequisites
 * PyTorch compatible GPU
@@ -28,7 +33,7 @@ Also see the guidance for docker usage [below](#simple-way-to-get-started).
 ## Usage
 
 ### Simple way to get started
-If you feel hard to get started from compiling of [mitsuba3](https://mitsuba.readthedocs.io/en/stable/src/developer_guide/compiling.html) and [CUDA denoising methods](https://github.com/CGLab-GIST/target-aware-denoising), we have offered a [docker image](https://hub.docker.com/repository/docker/jijiangli/dpcs/)
+If you feel hard to get started from compiling [mitsuba3](https://mitsuba.readthedocs.io/en/stable/src/developer_guide/compiling.html) and [CUDA denoising methods](https://github.com/CGLab-GIST/target-aware-denoising), we have offered a [docker image](https://hub.docker.com/repository/docker/jijiangli/dpcs/)
 to help you get started quickly.
 
 1. Download the [DPCS dataset](https://drive.google.com/file/d/10BITDSg3g0y9ajSKn5zqb_1OmO1Xoab5/view?usp=drive_link) and extract it to a folder e.g. `r"path/DPCS_dataset"`.
@@ -42,7 +47,7 @@ to help you get started quickly.
       cp -r "path/DPCS_dataset" ./DPCS
       docker run -it --gpus all --workdir /home -v "./DPCS":/home dpcs:latest
 ```
-4. Run the DPCS code to reproduce the relight results shows in the table 2 and Figure 5 of the main paper.
+4. Run the DPCS code to reproduce the relight results shown in Table 2 and Figure 5 of the main paper.
 ```bash
     cd DPCS/mitsuba
     python3 run_DPCS.py --dataset_root "DPCS/DPCS_dataset"
@@ -99,7 +104,7 @@ to help you get started quickly.
 ```
 ### Evaluation of all baseline methods and DPCS
 For evaluation, we also offer code for the result after running `run_DPCS.py`, the code is in `DPCS_dataset/main.py`. 
-After you run this code, you can get the results of the relighting in the `DPCS_dataset/metrics.excel` for all `data_name` of different methods inferred result in `DPCS_dataset/sets_up/`.
+After you run this code, you can get the results of the relighting in the `DPCS_dataset/metrics.excel` for all `data_name` of different methods inferred results in `DPCS_dataset/sets_up/`.
 Note that this script works simply to calculate the metrics for all methods inferred images appear in `DPCS_dataset/sets_up/data_name/pred/relit/test`.
 ## Apply DPCS to your own setup
 
@@ -108,7 +113,7 @@ Note that this script works simply to calculate the metrics for all methods infe
 3. Reconstruct a surface point cloud in the same software as 1., the pcd file will be in `'data_name/recon'`.
 4. Reconstruction of the mesh with an initial ``base_color.png`` from point cloud in code,
    note that this code takes the input of the pcd and outputs a `mesh` with its texture as `initial base color` directly
-   from pcd. This code may have some issues with UV for the `.obj` file because some version of Blender may not support UV in
+   from pcd. This code may have some issues with UV for the `.obj` file because some versions of Blender may not support UV in
    Python package. To solve this, in Blender GUI, you can export manually the mesh to `.obj` with UV map, and then rerun the following code,
    it will work.
 ```bash
@@ -131,14 +136,14 @@ Note that this script works simply to calculate the metrics for all methods infe
 1. The directory structure of the data is consistent with those used in [CompenNeSt++](https://github.com/BingyaoHuang/CompenNeSt-plusplus) and [DeProCams](https://github.com/BingyaoHuang/DeProCams), which facilitates the reproduction of the baseline methods presented in the paper on the `DPCS_dataset`.
 2. After running the code, you can find the relighting results in `DPCS_dataset/sets_up/data_name/pred/relit/test` folder.
 3. If you run with config of `Compensation`, you can find the compensation results in `DPCS_dataset/sets_up/data_name/prj/cmp/test` folder.
-4. For the different dataset appear in `DPCS_dataset`, you can find the detail config in `DPCS_dataset/sets_up/config.json`.
-   E.g., whether to use a mask during training or what of the number of test patterns you use.
+4. For the different setups in `DPCS_dataset`, you can find the details config in `DPCS_dataset/sets_up/config.json`.
+   E.g., whether to use a mask during training or what is the number of test patterns you use.
 5. Initialize the BRDF, for `metallic` and `roughness`, initialize them to black,
    for the `normal`, init it as the `(0,0,1)` no change to the surface. 
    For `base color`, initialize it from the point cloud, or you can use a  white texture as initialization also.
    but init from pcd sometimes performs a little bit better. See more in `DPCS/render_utils/bake_texture.py`.
 6. To test a  novel scene, for example, you want to modify the scene material or geometry,
-   go to `DPCS/mitsuba/scene/simu.xml` to change the configuration, e.g., change geometry file or BRDF maps path.
+   go to `DPCS/mitsuba/scene/simu.xml` to change the configuration, e.g., change geometry or BRDF maps path.
    Then you can run the `run_DPCS.py` in the `relit_DPCS` function to test.
 ----
 
