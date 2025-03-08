@@ -104,7 +104,7 @@ to help you get started quickly.
 ```
 ### Evaluation of all baseline methods and DPCS
 For evaluation, we also offer code for the result after running `run_DPCS.py`, the code is in `DPCS_dataset/main.py`. 
-After you run this code, you can get the results of the relighting in the `DPCS_dataset/metrics.excel` for all `data_name` of different methods inferred results in `DPCS_dataset/sets_up/`.
+After you run this code, you can get the results of the relighting in the `DPCS_dataset/metrics.xlsx` for all `data_name` of different methods inferred results in `DPCS_dataset/sets_up/`.
 Note that this script works simply to calculate the metrics for all methods inferred images appear in `DPCS_dataset/sets_up/data_name/pred/relit/test`.
 ## Apply DPCS to your own setup
 
