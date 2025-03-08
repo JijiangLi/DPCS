@@ -140,9 +140,9 @@ Note that this script works simply to calculate the metrics for all methods infe
    E.g., whether to use a mask during training or what is the number of test patterns you use.
 5. Initialize the BRDF, for `metallic` and `roughness`, initialize them to black,
    for the `normal`, init it as the `(0,0,1)` no change to the surface. 
-   For `base color`, initialize it from the point cloud, or you can use a  white texture as initialization also.
-   but init from pcd sometimes performs a little bit better. See more in `DPCS/render_utils/bake_texture.py`.
-6. To test a  novel scene, for example, you want to modify the scene material or geometry,
+   For `base color`, initialize it from the point cloud, or you can use a white texture as initialization also.
+   But initialized it from pcd sometimes performs a little bit better. See more in `DPCS/render_utils/bake_texture.py`.
+6. To test a novel scene, for example, you want to modify the scene material or geometry,
    go to `DPCS/mitsuba/scene/simu.xml` to change the configuration, e.g., change geometry or BRDF maps path.
    Then you can run the `run_DPCS.py` in the `relit_DPCS` function to test.
 ----
