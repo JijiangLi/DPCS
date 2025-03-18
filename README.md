@@ -153,6 +153,7 @@ Note that this script works simply to calculate the metrics for all methods infe
        author  = {Li, Jijiang and Deng, Qingyue and Ling, Haibin and Huang, Bingyao},
        journal = {IEEE Transactions on Visualization and Computer Graphics (in press)},
        title   = {DPCS: Path Tracing-Based Differentiable Projector-Camera Systems},
+       doi     = {10.1109/TVCG.2025.3549890},
        year    = {2025},}
 
 
