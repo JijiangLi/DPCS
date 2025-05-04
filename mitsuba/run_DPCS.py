@@ -84,7 +84,6 @@ for data_name in config["sets_up"]:
         # training sampling per pixel higher rendering image will have high quality while may waste too many times
         "spp" : 16,
         "Testspp":2070 ,
-        "backlight_sub":True,
         "data_name":data_name,
         "model_name":model_name,
         "is_in_direct" : config["sets_up"][data_name]["is_in_direct"],# using direct light mask or in-direct light mask,

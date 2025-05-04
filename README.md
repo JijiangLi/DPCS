@@ -12,7 +12,9 @@ Implementation of DPCS: Path Tracing-Based Differentiable Projector-Camera Syste
 We recommend running this code through [Nvidia-docker](https://hub.docker.com/repository/docker/jijiangli/dpcs/) on Ubuntu. 
 Please refer to the detailed introduction for the installation of [Docker](https://docs.docker.com/engine/install/ubuntu/) and [Nvidia-docker](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html). You can find the guidance for docker usage for DPCS [below](#simple-way-to-get-started).
 
-
+## Updates
+* 2025/05/04
+    * Small fix for [issue [#1](https://github.com/JijiangLi/DPCS/issues/1)] mentioned mesh reconstruction script issue for custom dataset. See code [here](https://github.com/JijiangLi/DPCS/blob/77900a4da4b297809e4cf3c3a5cff115861490ff/mitsuba/render_utils/bake_texture.py#L80-L88).
 ## Prerequisites
 * PyTorch compatible GPU
 * Python 3
@@ -107,15 +109,12 @@ For evaluation, we also offer code for the result after running `run_DPCS.py`, t
 After you run this code, you can get the results of the relighting in the `DPCS_dataset/metrics.xlsx` for all `data_name` of different methods inferred results in `DPCS_dataset/sets_up/`.
 Note that this script works simply to calculate the metrics for all methods inferred images appear in `DPCS_dataset/sets_up/data_name/pred/relit/test`.
 ## Apply DPCS to your own setup
-
+This hard code of projector x axis shift you may need to modify for your own data in this [line](https://github.com/JijiangLi/DPCS/blob/77900a4da4b297809e4cf3c3a5cff115861490ff/mitsuba/run_DPCS.py#L130) because we calibrated for 800 $\times$ 600 resolution of projector, and projected for 600 $\times$ 600 resolution. We also thank [issue [#1](https://github.com/JijiangLi/DPCS/issues/1)] for for providing more detailed steps to custom dataset.
 1. Calibrate the projector-camera system using the calibration software in [A Fast and Flexible Projector-Camera Calibration System](https://github.com/BingyaoHuang/single-shot-pro-cam-calib).
 2. Capture a setup using the same software as 1.
 3. Reconstruct a surface point cloud in the same software as 1., the pcd file will be in `'data_name/recon'`.
 4. Reconstruction of the mesh with an initial ``base_color.png`` from point cloud in code,
-   note that this code takes the input of the pcd and outputs a `mesh` with its texture as `initial base color` directly
-   from pcd. This code may have some issues with UV for the `.obj` file because some versions of Blender may not support UV in
-   Python package. To solve this, in Blender GUI, you can export manually the mesh to `.obj` with UV map, and then rerun the following code,
-   it will work.
+   note that this code takes the input of the pcd and outputs a `mesh` with its texture as `initial base color` directly from pcd. If your point cloud do not have color, you can use a white texture as initialization also. 
 ```bash
   cd DPCS
    blender --background --python3 mitsuba/render_utils/bake_texture.py `

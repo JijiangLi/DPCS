@@ -77,12 +77,14 @@ bpy.ops.object.mode_set(mode='OBJECT')
 bpy.ops.wm.save_as_mainfile(filepath=blend_path)
 if(not os.path.exists(os.path.join(export_path, f"{args.mesh_name}.obj"))):
     # os.remove(mesh_path)
-    bpy.ops.export_scene.obj(
+    bpy.ops.wm.obj_export(
         filepath=os.path.join(export_path, f"{args.mesh_name}.obj"),
-        use_normals=True,  # Export normals
-        use_materials = True,
-        axis_forward='Y',  # Blender axis setting
-        axis_up='Z',
+        export_normals=True,  # Export normals
+        export_materials = True,
+        forward_axis='Y',  # Blender axis setting
+        up_axis='Z',
+        export_uv=True,
+        export_colors=True,
     )
 
 subprocess.run([
