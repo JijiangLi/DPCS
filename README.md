@@ -109,7 +109,7 @@ For evaluation, we also offer code for the result after running `run_DPCS.py`, t
 After you run this code, you can get the results of the relighting in the `DPCS_dataset/metrics.xlsx` for all `data_name` of different methods inferred results in `DPCS_dataset/sets_up/`.
 Note that this script works simply to calculate the metrics for all methods inferred images appear in `DPCS_dataset/sets_up/data_name/pred/relit/test`.
 ## Apply DPCS to your own setup
-This hard code of projector x axis shift you may need to modify for your own data in this [line](https://github.com/JijiangLi/DPCS/blob/77900a4da4b297809e4cf3c3a5cff115861490ff/mitsuba/run_DPCS.py#L130) because we calibrated for 800 $\times$ 600 resolution of projector, and projected for 600 $\times$ 600 resolution. We also thank [issue [#1](https://github.com/JijiangLi/DPCS/issues/1)] for for providing more detailed steps to custom dataset.
+This hard code of the projector x-axis shift you may need to modify for your data in this [line](https://github.com/JijiangLi/DPCS/blob/77900a4da4b297809e4cf3c3a5cff115861490ff/mitsuba/run_DPCS.py#L130) because we calibrated for 800 $\times$ 600 resolution of the projector, and projected for 600 $\times$ 600 resolution. We also thank [issue [#1](https://github.com/JijiangLi/DPCS/issues/1)] for  providing more detailed steps to the custom dataset.
 1. Calibrate the projector-camera system using the calibration software in [A Fast and Flexible Projector-Camera Calibration System](https://github.com/BingyaoHuang/single-shot-pro-cam-calib).
 2. Capture a setup using the same software as 1.
 3. Reconstruct a surface point cloud in the same software as 1., the pcd file will be in `'data_name/recon'`.
