@@ -14,7 +14,7 @@ Please refer to the detailed introduction for the installation of [Docker](https
 
 ## Updates
 * 2025/05/04
-    * Small fix for [issue [#1](https://github.com/JijiangLi/DPCS/issues/1)] mentioned mesh reconstruction script issue for custom dataset. See code [here](https://github.com/JijiangLi/DPCS/blob/77900a4da4b297809e4cf3c3a5cff115861490ff/mitsuba/render_utils/bake_texture.py#L80-L88).
+    * Small fix for [issue [#1](https://github.com/JijiangLi/DPCS/issues/1)] mentioned mesh reconstruction script issue for custom dataset. See code [here](https://github.com/JijiangLi/DPCS/blob/68e37c13813ed24a8e89949e6152644ceea37482/mitsuba/render_utils/bake_texture.py#L80-L88).
 ## Prerequisites
 * PyTorch compatible GPU
 * Python 3
