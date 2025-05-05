@@ -97,11 +97,6 @@ if os.path.exists(calib_yaml_path):
     subprocess.run([
         python_executable, "mitsuba/render_utils/calib2params.py", calib_yaml_path, params_yaml_path
     ])
-
-source_file = os.path.join(export_path, "../recon/depth.mat")
-destination_file = os.path.join(export_path, "depth.mat")
-import shutil
-shutil.copyfile(source_file, destination_file)
 end_time = time.time()
 elapsed_time = end_time - start_time
 print(f"time: {elapsed_time:.6f} seconds")
