@@ -39,8 +39,7 @@ base_cross_bilateral = GbufferCrossBilateral(winSize=winSize)
 @dr.wrap_ad(source='drjit', target='torch')
 def dr_deltaE_loss(x,y):
     return deltaE(x.permute(2,0,1).unsqueeze(0),y.permute(2,0,1).unsqueeze(0))
-# done : warping net setup and configuration
-# begin
+
 if torch.cuda.is_available():
     device = torch.device("cuda")
 else:
@@ -88,7 +87,7 @@ def train_DPCS(train_config, data,opt,scene_uncom,params_uncom):
     *   opt: An optimizer or a dictionary of parameters used for the optimization process.
     *        It holds values to be updated (e.g., learning rates, camera and projector response function
     *        parameters) and provides methods to update these values during training.
-    *   scene_uncom: The uncompiled scene representation used by the rendering engine (Mitsuba) to generate images.
+    *   scene_uncom: The scene representation used by the rendering engine (Mitsuba) to generate images.
     *   params_uncom: A container for the scene and sensor parameters, including the transformation from sensor
     *                 to world coordinates. This is updated throughout training to refine the scene's properties.
     * \output :
@@ -126,7 +125,6 @@ def train_DPCS(train_config, data,opt,scene_uncom,params_uncom):
                 # insure a valid gamma camera response function
                 img_wb = White_Balance_Camera(opt[key5], img)
                 opt[key3] = dr.clamp(opt[key3], 1 / 3, 1)
-                # done: warping in rendering image in forward rendering approach
                 img_warped = dr.clamp(img_wb,0,1)
                 image = CRF(img_warped, opt[key3])  # this is for camera response estimation
                 if (train_config["denoiser_op"] =="cross_bilatera"):
@@ -306,7 +304,6 @@ def Compensate_DPCS(train_config, data, opt, scene_uncom, params_uncom, cmp_test
         "------------------------------------------Start compensation:--------------------------------------------------------")
     print()
     if train_config["requried_compensation"]:
-        opt_cmp = mi.ad.Adam(.01)
         cmp_folder_path = os.path.join(cmp_test_path,
                                        f"Mitsuba3_{train_config['loss']}_{num_train}_{batch_size}_{train_config['max_iters']}")
         if not os.path.exists(cmp_folder_path):
@@ -320,6 +317,7 @@ def Compensate_DPCS(train_config, data, opt, scene_uncom, params_uncom, cmp_test
             pro_in = TensorXf(data['prj_ref'][2, :, :, :].permute(1, 2, 0).cpu().numpy())
             params_uncom["Projector.irradiance.data"] = PRF(pro_in, opt[key2])
             params_uncom.update()
+            opt_cmp = mi.ad.Adam(.01)
             opt_cmp["Projector.irradiance.data"] = params_uncom["Projector.irradiance.data"]
             # for every rendered image start from that simulation to do compensation task
             losses = []
