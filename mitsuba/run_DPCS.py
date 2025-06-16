@@ -79,7 +79,7 @@ for data_name in config["sets_up"]:
     # subtract it from the captured image and add it during infer
     train_config ={
         "is_metric":True,# whether to inference and evaluate the model
-        "denoiser_op" : "cross_bilatera", # [op=["cross_bilatera","TARGET","OIDN"]]
+        "denoiser_op" : "cross_bilatera", # [op=["cross_bilatera","None"]]
         "scale": config["sets_up"][data_name]["scale"],
         # training sampling per pixel higher rendering image will have high quality while may waste too many times
         "spp" : 16,

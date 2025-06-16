@@ -30,6 +30,9 @@ Please refer to the detailed introduction for the installation of [Docker](https
 * json
 * blender 3.6
 * open3d
+* yaml
+* trimesh
+* pymeshlab == 2022.2.post3
 
 
 ## Usage
@@ -51,8 +54,8 @@ to help you get started quickly.
 ```
 4. Run the DPCS code to reproduce the relight results shown in Table 2 and Figure 5 of the main paper.
 ```bash
-    cd DPCS/mitsuba
-    python3 run_DPCS.py --dataset_root "DPCS/DPCS_dataset"
+    cd mitsuba
+    python3 run_DPCS.py --dataset_root "../DPCS_dataset"
 ```
 
 ### On your local machine
