@@ -119,16 +119,19 @@ for data_name in config["sets_up"]:
     }
     # ----------------------------------------------------------------------------------------------------------------------
     cali_data = loadCalib(fullfile(params_path, "params.yml"))
-    cali_data["cam_w"] = 640
-    cali_data["cam_h"] = 360
-    cali_data["prj_w"] = 600
-    cali_data["prj_h"] = 600
-    cx = -int(cali_data["prjK"].squeeze().numpy()[0, 2] - 400)
-    cy = -int(cali_data["prjK"].squeeze().numpy()[1, 2] - 300)
+    cali_data["cam_w"] = cam_size[1]
+    cali_data["cam_h"] = cam_size[0]
+    cali_data["prj_w"] = prj_size[1]
+    cali_data["prj_h"] = prj_size[0]
+
+    # Hard code for projector calibration result:
+    #   data conversion between a projector with a resolution of (800, 600) when calibrating and data captured at a projector resolution of (600, 600)
+    #   If your projector is calibrated using the same resolution as the captured data projector resolution, these lines should be commented out.
     cali_data["prjK"][0,0,0] = cali_data["prjK"][0,0,0]*600/600
     cali_data["prjK"][0,0,2] = (cali_data["prjK"][0,0,2]-100)*600/600
     cali_data["prjK"][0,1,1]  = cali_data["prjK"][0,1,1] *600/600
     cali_data["prjK"][0,1,2] = cali_data["prjK"][0,1,2] *600/600
+
     # -----------------------------------------load image-----------------------------------------------
     print()
     print(
