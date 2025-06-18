@@ -50,7 +50,7 @@ to help you get started quickly.
 ```bash
       git clone https://github.com/JijiangLi/DPCS
       cp -r "path/DPCS_dataset" ./DPCS
-      docker run -it --gpus all --workdir /home -v "./DPCS":/home dpcs:latest
+      docker run -it --gpus all --workdir /home -v "./DPCS":/home jijiangli/dpcs:latest
 ```
 4. Run the DPCS code to reproduce the relight results shown in Table 2 and Figure 5 of the main paper.
 ```bash
